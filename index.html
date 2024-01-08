@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Joke</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat&family=Nunito&family=Oswald&family=Roboto&display=swap');
+    body {
+        background-color: #ae9cff;
+    }
+    
+    .container {
+        width: 500px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: black;
+        padding: 20px 30px 70px 30px;
+        box-shadow: 0 4px 8px rgba(4, 2, 1, 0.5);
+        border-radius: 15px;
+    }
+    
+    #btn {
+        height: 45px;
+        border: none;
+        background-color: #ae9cff;
+        padding: 10px 10px 10px 10px;
+        color: white;
+        outline: none;
+        border-radius: 8px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    
+    .emoji {
+        text-align: center;
+    }
+    
+    .emoji h1 {
+        font-size: 70px;
+    }
+    
+    .joke {
+        color: #ae9cff;
+        text-align: center;
+        margin-top: 30px;
+    }
+    
+    #joke {
+        font-family: 'Arial', sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: white;
+        margin-bottom: 15px;
+    }
+    
+    .get-joke-btn {
+        margin-top: 50px;
+        text-align: center;
+    }
+    
+    .fade {
+        opacity: 1;
+        transition: opacity 1.5s;
+    }
+    
+    @media screen and (max-width:776px) {
+        .container {
+            width: 300px;
+            padding: 20px 30px 40px 30px;
+        }
+        .emoji h1 {
+            font-size: 50px;
+        }
+        #btn {
+            height: 35px;
+            border: none;
+            background-color: #ae9cff;
+            padding: 10px 10px 10px 10px;
+            color: white;
+            outline: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    }
+    
+    @media screen and (max-width:450px) {
+        .container {
+            width: 200px;
+            padding: 20px 30px 40px 30px;
+        }
+        .emoji h1 {
+            font-size: 50px;
+        }
+        #btn {
+            height: 30px;
+            border: none;
+            background-color: #ae9cff;
+            padding: 7px 10px 10px 10px;
+            color: white;
+            outline: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .dictionary-heading {
+            font-family: Arial, sans-serif;
+            font-size: 25px;
+            color: white;
+            text-align: center;
+        }
+    }
+    
+    .dictionary-heading {
+        font-family: Arial, sans-serif;
+        font-size: 36px;
+        color: white;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <h1 class="dictionary-heading">Random Joke Generator</h1>
+    <div class="container">
+        <div class="emoji">
+            <h1>&#128514;</h1>
+        </div>
+        <div class="joke">
+            <p id="joke"></p>
+        </div>
+
+        <div class="get-joke-btn">
+            <button id="btn">Get Random Joke</button>
+        </div>
+    </div>
+</body>
+<script>
+    const btn = document.getElementById('btn');
+    const jokeId = document.getElementById('joke');
+    const jokeClass = document.getElementsByClassName("joke")
+    let url = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,racist,sexist,explicit&type=single";
+    // btn.addEventListener("click", async function getRandomJoke() {
+    //     let x = await fetch(`${url}`)
+    //     let getJoke = x.json();
+    //     console.log(getJoke);
+    //     jokeClass.innerHTML = ` <p id="joke">${getJoke.joke}</p>`;
+
+    // })
+    btn.addEventListener("click", () => {
+        fetch(url).then((data) => data.json()).then((jokeData) => {
+            console.log(jokeData)
+
+            jokeId.innerHTML = ` ${jokeData.joke}`;
+
+
+        })
+    })
+</script>
+
+</html>
